@@ -1,0 +1,200 @@
+1.版本號
+git version
+
+2.寫入使用者資訊
+git config  --global user.name your-name
+git config  --global user.email your-email
+
+3.檢視設定資訊
+C:\Users\Jerry\.gitconfig
+git config --list
+git config  user.name your-name
+git config  user.email your-email
+
+4.將目錄新增版本控管
+git init
+
+5.檔案狀態
+-U(Untrack)未被控管（只控管文字檔）
+
+6.控管狀態
+git status
+
+7.加入控管
+git add<filename>
+	-U-->A(added)已加入控管
+	-M(modify)控管修改後檔案
+
+8.看編碼object內容
+git cat-file -p內容 sha-1 xxxxxx(前六碼 目錄+檔案名稱)
+git cat file -t型態 sha-1 xxxxxx
+
+9.檢視暫存區的檔案
+git ls-files -s
+
+10.將暫存區資料儲存到倉庫
+git commit -m "第一次提交"
+- 修改上一次的commit
+    - git commit --amend
+
+11.提交後產生兩個object
+	-commit(sha-1)
+		-tree(sha-1)
+			-files
+12.檢視提交的commit
+git log 
+git log --oneline(以一行為主)
+
+13.使用Linux內建的vim編輯器
+	-i(進行編輯模式)
+	-按esc鍵後,使用:wq（寫入並離開)
+
+14.Python
+	-
+
+15.手動刪除檔案後--使用上以這個為主--
+	-恢復:git restore
+	-確認:git add
+
+16.自動刪除檔案
+	-git rm -f <filename>
+	-恢復:git restore --staged <file>
+		再回到手動刪除檔案
+
+17.將檔案移除
+	-git rm --cached <filename>
+		-轉換成Untrack模式
+
+18.檢視目前分支
+	-git branch 
+		-新增<branch name>
+	-git branch -D<branch name>
+		-刪除<branch name>
+
+19.切換分支
+	-git checkout<branch name>
+	-git checkout -b<branch name>
+		-新增分支跟切換
+	-git branch -m <old branch name> <new branch name>
+
+20.合併分支
+	-git merge<branch name>
+		-需切換到其他分支
+21.切換commit
+	-git checkout commit-object
+	-回到過去的修正
+		-git checkout -b dev2
+		-git add .
+		-git commit
+
+22.反悔(取消)合併
+	-git merge --abort
+	-git reset commit -object(回到過去的commit)
+	-git reset --hard commit -object
+
+23.顯示所有的歷程
+	- git reflog
+
+24.修改恢復
+1.簡單的恢復
+git checkout .
+
+2.git reset --hard commit-object
+
+3.git reset --hard HEAD~2
+
+4.git reset --hard commit-object
+
+25.反悔reset
+git reset ORIG_HEAD
+
+
+26.檢視雲端倉庫url的綁定
+- git remote -v
+- git remote add origin https://github.com/peiyi523/git-demo1.git
+
+27.本地端推送遠端倉庫
+- git push -u origin master # 第一次推送一定要寫
+- git push
+- git push -f (強制更新)
+
+28.git 演練
+- 產生分支
+	-git branch dev
+	-git checkout dev
+- 產生跟切換
+	- git checkout -b dev
+
+- 切換分支到master 
+	- git checkout master
+- 將dev分支合併到master
+	- git merge dev
+- 更新到雲端mster分支
+	-git push
+- 刪除本地dev分支
+	- git branch -D dev
+- 雲端分支的刪除
+	- git push --delete origin dev
+
+
+-使用到指令
+(git checkout/log/branch/push/merge)
+
+
+
+29.新增READ跟.gitignore
+	-README.md 使用markdown語法
+		- 專案說明文檔
+	
+	-gitignore
+		-忽略不被控管的檔案
+			- 1.jpg
+			- *.jpg
+			- res/  (目錄)
+
+30.跟遠端相關指令
+	- 複製專案
+	- git clone https://github.com/peiyi523/git-demo1.git（下載自己的專案）
+	- 在github上 code>>download zip(下載別人的且不會含.git)
+
+
+31.程式演練(git pull)
+	- 公司電腦
+		- 專案新增command.txt
+		- git add / git commit
+		- git push
+
+	- 家裡電腦
+		- 初始專案
+			- git clone 專案路徑
+		- 已存在專案
+			- git pull(從遠端更新到本地端）
+
+31.重點指令
+	###本地相關
+	- git init
+	- git add .
+		- U/A/M/D (控管模式)
+	- gir checkout .
+		- 恢復修改(反悔簡易恢復)
+		- 任一個commit-object/branch
+	- git commit -m "xxxxx"
+		- 暫存區>倉庫區
+	- git log / git status
+ 	- git checkout -b <新增分支跟切換>
+	- git merge <分支合併>
+	- git reset --hard HEAD (commit-object)
+	- git reflog
+    - git push
+    - git push -f
+
+	###雲端相關
+	- github 申請新的專案倉庫網址
+	- git add remote origin https:/xxx/xxxx.git
+	- git remote -v
+	- git push -u origin master(第一次)
+		- git push(第一次之後)
+	- 複製專案
+	- git clone https:/xxxx/xxx.git
+	- 雲端同步專案到本地端
+		- git pull
